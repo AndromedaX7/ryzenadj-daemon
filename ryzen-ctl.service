@@ -1,0 +1,12 @@
+[Unit]
+Description=Ryzen Performance Ctrl Tuning
+After=power-profiles-daemon.service
+Wants=graphical.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ryzenadj-powermgr
+
+
+[Install]
+WantedBy=multi-user.target

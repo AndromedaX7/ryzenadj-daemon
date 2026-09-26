@@ -1,20 +1,21 @@
 post_install() {
     systemctl daemon-reload
     echo "Enable service with:"
-    echo "  sudo systemctl enable --now ryzen-performance.service"
+    echo "  sudo systemctl enable --now ryzen-ctl.timer"
 }
 
 post_upgrade() {
     systemctl daemon-reload
 
-    if systemctl is-enabled --quiet ryzen-performance.service; then
-        systemctl restart ryzen-performance.service
+    if systemctl is-enabled --quiet ryzen-ctl.timer; then
+        systemctl restart ryzen-ctl.service
+        systemctl restart ryzen-ctl.timer
     fi
 }
 
 post_remove() {
-    if systemctl is-enabled --quiet ryzen-performance.service; then
-        systemctl disable --now ryzen-performance.service
+    if systemctl is-enabled --quiet ryzen-ctl.service; then
+        systemctl disable --now ryzen-ctl.timer
     fi
     systemctl daemon-reload
 }

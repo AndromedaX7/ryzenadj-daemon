@@ -1,0 +1,9 @@
+# /etc/systemd/system/ryzen-ctl.timer
+[Unit]
+Description=Timer for battery polling
+[Timer]
+OnBootSec=60
+OnUnitActiveSec=30
+AccuracySec=1s
+[Install]
+WantedBy=timers.target

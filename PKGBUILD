@@ -1,22 +1,23 @@
-# Maintainer: Abhishek "Abh15h3k" Banerji <abhishekbanerji1999@gmail.com>
-# Contributor: Daniel "dtubber" Wanner <daniel.wanner@tubber.xyz>
-# Maintainer: so1ar <so1ar114514@gmail.com>
+
 
 pkgname="ryzenadj-daemon"
-pkgver=0.19.0
-pkgrel=1
+pkgver=0.19.1
+pkgrel=3
 pkgdesc="RyzenAdj tool for adjusting Ryzen Mobile power states"
 
 arch=("x86_64")
 depends=("ryzenadj")
 
-source=("ryzen-performance.service" "ryzen-performance-start.sh")
-sha256sums=('04ea184b0bc0800514d89e99b8b735b67c3ead3a92f52aa81f73995b343fadaf'
-            '85a4a3ca27b79a2ebdc9d104afa6f1503450f5662cead77bbfc37798deecf799')
+source=("ryzen-ctl.timer" "ryzen-ctl.service" "ryzenadj-powermgr")
+sha256sums=('ecc0e1aeccd41185771b4fde1511ac53a12e2eec6b9a23d8963dfc778626f066'
+            'd288d010d0123f4b2f1192b54629d23b962ad1829c3b9879fdc45ec3d3cc1b4c'
+            '5e9318a65cd452a36c0e1c99c6021f7dab41c2bef66ff2c8f1f8d2c00f21e2e6')
+
 
 install=ryzenadj-daemon.install
 
 package() {
-    install -Dm644 ryzen-performance.service "$pkgdir/etc/systemd/system/ryzen-performance.service"
-    install -Dm755 ryzen-performance-start.sh "$pkgdir/usr/share/ryzen-performance/ryzen-performance-start.sh"
+    install -Dm644 ryzen-ctl.timer "$pkgdir/etc/systemd/system/ryzen-ctl.timer"
+    install -Dm644 ryzen-ctl.service "$pkgdir/etc/systemd/system/ryzen-ctl.service"
+    install -Dm755 ryzenadj-powermgr "$pkgdir/usr/bin/ryzenadj-powermgr"
 }
